@@ -27,6 +27,7 @@
 .kelompok {
     background: url("gambar 1.jpg");
     position: relative;
+    top: 5;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -753,4 +754,5 @@ footer {
 
 .nav-menu {
     transition: 0.3s ease-in-out;
+
 }
