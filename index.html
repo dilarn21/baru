@@ -14,11 +14,10 @@
                 <h1>♨️</h1>
                 <nav>
                     <div class="button-container">
-                        <div class="box-button">
-                            <a href="#tentang kami " class="button" style="color: black"><span>tentang kami</span></a></div>
-                        <div class=" box-button "><a href="#menu" class="button " style="color: black">menu</a></div>
-                        <div class="box-button "><a href="#cart" class="button " style="color: black">keranjang</a></div>
-                        <div class="box-button "><a href="#user-info" class="button " style="color: black">pemesananan</a></div>
+                        <a href="#tentang kami"><button >Tentang Kami</button></a>
+                        <a href="#menu"><button >Menu</button></a>
+                        <a href="#cart"><button >Keranjang</button></a>
+                        <a href="#user-info"><button >Pemesanan</button></a>
                     </div>
                 </nav>
             </header>
@@ -42,7 +41,7 @@
         </g>
 
         </svg>
-                                    <strong>NIKMATI CITA RASA KAMI</strong>
+                                    <strong>PESAN DAN NIKMATI MASAKAN KAMI -></strong>
                                 </div>
                             </div>
                             <div class="front">
@@ -61,7 +60,7 @@
                                     <div class="description">
                                         <div class="title">
                                             <p class="title">
-                                                <strong href="#menu ">PESAN SEKARANG</strong>
+                                                <strong href="#menu ">CLICK DISINI</strong>
                                             </p>
                                             <svg fill-rule="nonzero" height="15px" width="15px" viewBox="0,0,256,256" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode: normal" text-anchor="none" font-size="none" font-weight="none" font-family="none" stroke-dashoffset="0" stroke-dasharray="" stroke-miterlimit="10" stroke-linejoin="miter" stroke-linecap="butt" stroke-width="1" stroke="none" fill-rule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
                                         </div>
@@ -92,7 +91,7 @@
         <div class="menu-container">
             <div class="menu-item">
                 <img src="keju.jpg" alt="Varian Keju">
-                <h3>Varian Keju</h3>
+                <h3>Varian Keju Isi 3</h3>
                 <p>Komposisi: UBI, kulit lumpia, Keju, gula, garam</p>
                 <span class="price">Rp5.000</span>
                 <button onclick="addToCart('Varian Keju', 5000)">Pesan</button>
@@ -100,12 +99,35 @@
 
             <div class="menu-item">
                 <img src="coklat.jpg" alt="Varian Coklat">
-                <h3>Varian Coklat</h3>
+                <h3>Varian Coklat Isi 3</h3>
                 <p>Komposisi: UBI, kulit lumpia, coklat, gula, garam</p>
                 <span class="price">Rp5.000</span>
                 <button onclick="addToCart('Varian Coklat', 5000)">Pesan</button>
             </div>
-        </div>
+
+            <div class="menu-item">
+                <img src="coklat.jpg" alt="Varian Coklat">
+                <h3>Varian Coklat Isi 2</h3>
+                <p>Komposisi: UBI, kulit lumpia, coklat, gula, garam</p>
+                <span class="price">Rp3.000</span>
+                <button onclick="addToCart('Varian Coklat Isi 2', 3000)">Pesan</button>
+            </div>
+
+            <div class="menu-item">
+                <img src="keju.jpg" alt="Varian keju">
+                <h3>Varian Keju Isi 2</h3>
+                <p>Komposisi: UBI, kulit lumpia, coklat, gula, garam</p>
+                <span class="price">Rp3.000</span>
+                <button onclick="addToCart('Varian Keju Isi 2', 3000)">Pesan</button>
+            </div>
+
+            <div class="menu-item">
+                <img src="gambar 1.jpg" alt="Varian keju + Coklat">
+                <h3>Varian Keju + Coklat</h3>
+                <p>Komposisi: UBI, kulit lumpia, coklat,Keju, gula, garam</p>
+                <span class="price">Rp5.000</span>
+                <button onclick="addToCart('Varian Keju + Coklat', 5000)">Pesan</button>
+            </div>
     </section>
 
     <section id="cart">
@@ -132,6 +154,5 @@
 </body>
 <link rel="stylesheet " href="style2.css ">
 <script src="script.js "></script>
-
 
 </html>
