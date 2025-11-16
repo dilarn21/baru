@@ -17,6 +17,23 @@ function removeFromCart(name) {
     updateCart();
 }
 
+// Hitung total + diskon
+function calculateTotal() {
+    let subtotal = 0;
+    let totalDiskon = 0;
+
+    cart.forEach(item => {
+        const itemSubtotal = item.price * item.quantity;
+        subtotal += itemSubtotal;
+
+        // Diskon 1000 per 3 item (kelipatan)
+        const diskonItem = Math.floor(item.quantity / 3) * 1000;
+        totalDiskon += diskonItem;
+    });
+
+    return { subtotal, totalDiskon, total: subtotal - totalDiskon };
+}
+
 // Update tampilan keranjang dan total
 function updateCart() {
     const cartContainer = document.getElementById('cart-items');
@@ -39,8 +56,13 @@ function updateCart() {
         });
     }
 
-    const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
-    document.getElementById('total-price').textContent = `Total: Rp${total}`;
+    const { subtotal, totalDiskon, total } = calculateTotal();
+
+    document.getElementById('total-price').innerHTML = `
+        Subtotal: Rp${subtotal.toLocaleString()}<br>
+        Diskon: -Rp${totalDiskon.toLocaleString()}<br>
+        <strong>Total: Rp${total.toLocaleString()}</strong>
+    `;
 }
 
 // Kirim pesanan ke WhatsApp
@@ -60,6 +82,8 @@ function kirimPesanan() {
 
     const admin = "6285878832973";
 
+    const { subtotal, totalDiskon, total } = calculateTotal();
+
     let teks = `📦 *PESANAN BARU*\n
 👤 Nama: ${nama}
 📱 Kelas / No HP: ${nohp}
@@ -70,9 +94,10 @@ function kirimPesanan() {
         teks += `${i + 1}. ${item.name} x ${item.quantity} - Rp${(item.price * item.quantity).toLocaleString()}\n`;
     });
 
-    const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
-
-    teks += `\n💰 *Total: Rp${total.toLocaleString()}*`;
+    teks += `
+🧮 Subtotal: Rp${subtotal.toLocaleString()}
+🎁 Diskon: -Rp${totalDiskon.toLocaleString()}
+💰 *Total Akhir: Rp${total.toLocaleString()}*`;
 
     const url = `https://wa.me/${admin}?text=${encodeURIComponent(teks)}`;
     window.open(url, "_blank");
