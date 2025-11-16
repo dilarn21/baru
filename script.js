@@ -40,7 +40,8 @@ function updateCart() {
     }
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    document.getElementById('total-price').textContent = `Total: Rp${total.toLocaleString()}`;
+    document.getElementById('total-price').textContent = `Total: Rp${total}`;
+
 }
 
 // Kirim pesanan ke WhatsApp
@@ -57,15 +58,16 @@ function kirimPesanan() {
         return;
     }
 
-    const admin = "6285329341685"; // Nomor WhatsApp admin
+    const admin = "6285878832973"; // Nomor WhatsApp admin
 
-    let teks = `📦 *PESANAN BARU KELOMPOK-1*\n\n👤 Nama: ${nama}\n📞 Kelas / No HP: ${nohp}\n\n🍴 *Daftar Pesanan:*\n`;
+    let teks = `📦 *PESANAN BARU KELOMPOK-1*\n\n👤 Nama: ${nama}\n Kelas / No HP: ${nohp}\n\n🍴 *Daftar Pesanan:*\n`;
     cart.forEach((item, i) => {
         teks += `${i + 1}. ${item.name} x ${item.quantity} - Rp${(item.price * item.quantity).toLocaleString()}\n`;
-    });
+    })
+
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    teks += `\n💰 *Total: Rp${total.toLocaleString()}*\n\nTerima kasih telah memesan di RasaNusantara 🙏`;
+    teks += `\n💰 *Total: Rp${total.toLocaleString()}*\n\nTerima kasih telah memesan di Kelompok kami 🙏`;
 
     const url = `https://wa.me/${admin}?text=${encodeURIComponent(teks)}`;
     window.open(url, "_blank");
