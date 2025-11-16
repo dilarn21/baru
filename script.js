@@ -65,9 +65,9 @@ function kirimPesanan() {
         teks += `${i + 1}. ${item.name} x ${item.quantity} - Rp${(item.price * item.quantity).toLocaleString()}\n`;
     })
 
-
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    teks += `\n💰 *Total: Rp${total.toLocaleString()}*\n\nTerima kasih telah memesan di Kelompok kami 🙏`;
+    teks += `\n💰 *Total: Rp${total.toLocaleString()}*\n\nTerima kasih telah memesan di Kelompok kami 🙏\n
+    Barang Ready Di Hari Selasa Ya`;
 
     const url = `https://wa.me/${admin}?text=${encodeURIComponent(teks)}`;
     window.open(url, "_blank");
@@ -76,3 +76,4 @@ function kirimPesanan() {
     cart = [];
     updateCart();
 }
+
