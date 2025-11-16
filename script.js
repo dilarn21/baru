@@ -2,7 +2,6 @@ let cart = []; // keranjang utama
 
 // Tambah item ke keranjang
 function addToCart(name, price) {
-    // Cek apakah item sudah ada di keranjang
     let existingItem = cart.find(item => item.name === name);
     if (existingItem) {
         existingItem.quantity += 1;
@@ -30,7 +29,6 @@ function updateCart() {
             const div = document.createElement('div');
             div.classList.add('cart-item');
 
-            // Escape tanda kutip agar onclick aman
             const safeName = item.name.replace(/'/g, "\\'");
 
             div.innerHTML = `
@@ -41,7 +39,7 @@ function updateCart() {
         });
     }
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
     document.getElementById('total-price').textContent = `Total: Rp${total}`;
 }
 
@@ -60,39 +58,25 @@ function kirimPesanan() {
         return;
     }
 
-    const admin = "6285878832973"; // Nomor WhatsApp admin
+    const admin = "6285878832973";
 
-    let teks = `📦 *PESANAN BARU KELOMPOK-1*\n
+    let teks = `📦 *PESANAN BARU*\n
 👤 Nama: ${nama}
 📱 Kelas / No HP: ${nohp}
 
 🍴 *Daftar Pesanan:*\n`;
 
     cart.forEach((item, i) => {
-       const subtotal = item.price * item.quantity;
-const diskon = Math.floor(item.quantity / 3) * 1000;
-const bayar = subtotal - diskon;
+        teks += `${i + 1}. ${item.name} x ${item.quantity} - Rp${(item.price * item.quantity).toLocaleString()}\n`;
+    });
 
-teks += `${i + 1}. ${item.name} x ${item.quantity} - Rp${bayar.toLocaleString()}`;
-if (diskon > 0) teks += ` (Diskon: Rp${diskon.toLocaleString()})`;
-teks += `\n`;
+    const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
 
-
-    // Hitung total + diskon beli 3 potong 1000
-const total = cart.reduce((sum, item) => {
-    const subtotal = item.price * item.quantity;
-    const diskon = Math.floor(item.quantity / 3) * 1000; 
-    return sum + (subtotal - diskon);
-}, 0);
-
-    teks += `\n💰 *Total: Rp${total.toLocaleString()}*\n
-Terima kasih telah memesan di Kelompok kami 🙏
-Barang Ready Di Hari Selasa Ya`;
+    teks += `\n💰 *Total: Rp${total.toLocaleString()}*`;
 
     const url = `https://wa.me/${admin}?text=${encodeURIComponent(teks)}`;
     window.open(url, "_blank");
 
-    // Reset keranjang setelah pesan dikirim
     cart = [];
     updateCart();
 }
