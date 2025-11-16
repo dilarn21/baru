@@ -1,23 +1,3 @@
-let cart = []; // keranjang utama
-
-// Tambah item ke keranjang
-function addToCart(name, price) {
-    // Cek apakah item sudah ada di keranjang
-    let existingItem = cart.find(item => item.name === name);
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ name, price, quantity: 1 });
-    }
-    updateCart();
-}
-
-// Hapus item dari keranjang
-function removeFromCart(name) {
-    cart = cart.filter(item => item.name !== name);
-    updateCart();
-}
-
 // Update tampilan keranjang dan total
 function updateCart() {
     const cartContainer = document.getElementById('cart-items');
@@ -29,7 +9,6 @@ function updateCart() {
         cart.forEach(item => {
             const div = document.createElement('div');
             div.classList.add('cart-item');
-            // Escape tanda kutip agar onclick aman
             const safeName = item.name.replace(/'/g, "\\'");
             div.innerHTML = `
                 <span>${item.name} x ${item.quantity}</span>
@@ -39,9 +18,16 @@ function updateCart() {
         });
     }
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    document.getElementById('total-price').textContent = `Total: Rp${total}`;
+    // Hitung total + diskon
+    let total = 0;
 
+    cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        const diskon = Math.floor(item.quantity / 3) * 1000; // diskon per 3 item
+        total += subtotal - diskon;
+    });
+
+    document.getElementById('total-price').textContent = `Total: Rp${total.toLocaleString()}`;
 }
 
 // Kirim pesanan ke WhatsApp
@@ -60,20 +46,28 @@ function kirimPesanan() {
 
     const admin = "6285878832973"; // Nomor WhatsApp admin
 
-    let teks = `📦 *PESANAN BARU KELOMPOK-1*\n\n👤 Nama: ${nama}\n Kelas / No HP: ${nohp}\n\n🍴 *Daftar Pesanan:*\n`;
-    cart.forEach((item, i) => {
-        teks += `${i + 1}. ${item.name} x ${item.quantity} - Rp${(item.price * item.quantity).toLocaleString()}\n`;
-    })
+    let teks = `📦 *PESANAN BARU KELOMPOK-1*\n\n👤 Nama: ${nama}\n📱 Kelas / No HP: ${nohp}\n\n🍴 *Daftar Pesanan:*\n`;
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    teks += `\n💰 *Total: Rp${total.toLocaleString()}*\n\nTerima kasih telah memesan di Kelompok kami 🙏\n
-    Barang Ready Di Hari Selasa Ya`;
+    let total = 0;
+
+    cart.forEach((item, i) => {
+        const subtotal = item.price * item.quantity;
+        const diskon = Math.floor(item.quantity / 3) * 1000;
+        const bayar = subtotal - diskon;
+
+        teks += `${i + 1}. ${item.name} x ${item.quantity} - Rp${bayar.toLocaleString()}`;
+        if (diskon > 0) teks += ` (Diskon: Rp${diskon.toLocaleString()})`;
+        teks += `\n`;
+
+        total += bayar;
+    });
+
+    teks += `\n💰 *Total: Rp${total.toLocaleString()}*`;
+    teks += `\n\nTerima kasih telah memesan 🙏\nBarang Ready Hari Selasa Ya`;
 
     const url = `https://wa.me/${admin}?text=${encodeURIComponent(teks)}`;
     window.open(url, "_blank");
 
-    // Reset keranjang setelah pesan dikirim
     cart = [];
     updateCart();
 }
-
