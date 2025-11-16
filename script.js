@@ -1,36 +1,34 @@
 let cart = [];
 let orderCount = 0;
 
-function pesanMultiRasa() {
-    const selectedCheckboxes = Array.from(document.querySelectorAll('#menu input[type="checkbox"]:checked'));
-    
-    if (selectedCheckboxes.length < 2 || selectedCheckboxes.length > 3) {
-        alert("Silakan pilih 2 atau 3 rasa.");
+// Tambah varian biasa
+function addToCartBiasa(name, price) {
+    const exist = cart.find(item => item.name === name);
+    if (exist) {
+        exist.quantity += 1;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+    orderCount++;
+    updateCart();
+}
+
+// Tambah combo 2/3 rasa
+function addCombo() {
+    const selected = Array.from(document.querySelectorAll('#menu input[type="checkbox"]:checked'));
+    if (selected.length < 2 || selected.length > 3) {
+        alert("Silakan pilih 2 atau 3 rasa untuk combo.");
         return;
     }
 
-    const pricePerRasa = 1500;
-    const newItems = selectedCheckboxes.map(cb => ({ name: cb.value, price: pricePerRasa, quantity: 1 }));
+    const comboName = "Combo: " + selected.map(cb => cb.value).join(" + ");
+    const comboPrice = 1500;
 
-    // Tambahkan ke keranjang global
-    newItems.forEach(newItem => {
-        const exist = cart.find(item => item.name === newItem.name);
-        if (exist) {
-            exist.quantity += 1;
-        } else {
-            cart.push(newItem);
-        }
-    });
-
+    cart.push({ name: comboName, price: comboPrice, quantity: 1 });
     orderCount++;
     updateCart();
 
-    // Cek diskon 1000 untuk pesanan kedua atau lebih
-    if (orderCount >= 2) {
-        alert("Diskon Rp1000 diterapkan untuk pesanan ke-" + orderCount);
-    }
-
-    selectedCheckboxes.forEach(cb => cb.checked = false);
+    selected.forEach(cb => cb.checked = false);
 }
 
 function updateCart() {
@@ -49,7 +47,7 @@ function updateCart() {
     }
 
     let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    if (orderCount >= 2) total -= 1000; // diskon 1000
+    if (orderCount >= 2) total -= 1000; // diskon pesanan kedua atau lebih
     document.getElementById('total-price').textContent = `Total: Rp${total.toLocaleString()}`;
 }
 
