@@ -25,9 +25,8 @@
 }
 
 .kelompok {
-    background: url("gambar 1.jpg");
+    background: url("IMG-20251113-WA0030.jpg") center/cover no-repeat;
     position: relative;
-    top: 0;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -49,112 +48,8 @@
 
 /* From Uiverse.io by arthur_6104 */
 
-.box-button {
-    cursor: pointer;
-    border: 4px solid black;
-    background-color: gray;
-    padding-bottom: 10px;
-    transition: 0.1s ease-in-out;
-    user-select: none;
-}
-
-.button {
-    background-color: #dddddd;
-    border: 4px solid #f8f8f9;
-    padding: 8px 14px;
-    /* default besar */
-    color: rgb(12, 12, 12);
-    font-size: 1em;
-}
-
-.button span {
-    font-size: 1.2em;
-    letter-spacing: 1px;
-}
-
-.box-button:active {
-    padding: 0;
-    margin-bottom: 10px;
-    transform: translateY(10px);
-}
-
 
 /* Container responsif */
-
-.button-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* tombol bisa turun jika layar kecil */
-    gap: 10px;
-    justify-content: center;
-    /* biar rapi di tengah */
-}
-
-@media (max-width: 480px) {
-    .button {
-        font-size: 0.8em;
-        padding: 6px 10px;
-    }
-    .button span {
-        font-size: 1em;
-    }
-    .box-button {
-        width: 100%;
-        /* tombol 1 baris full */
-        text-align: center;
-    }
-}
-
-
-/* HP & tablet sedang (max 768px) */
-
-@media (max-width: 768px) {
-    .button {
-        font-size: 0.9em;
-        padding: 7px 12px;
-    }
-}
-
-
-/* Laptop kecil (max 1024px) */
-
-@media (max-width: 1024px) {
-    .button {
-        font-size: 1em;
-        padding: 8px 14px;
-    }
-}
-
-
-/* From Uiverse.io by ElSombrero2 */
-
-
-/* ------------------------------ */
-
-
-/*      KELAS .KELOMPOK          */
-
-
-/* ------------------------------ */
-
-.kelompok {
-    background: url("gambar 1.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-}
-
-
-/* Responsif background */
 
 @media (max-width: 480px) {
     .kelompok {
@@ -177,57 +72,6 @@
     }
 }
 
-
-/* ------------------------------ */
-
-
-/*      TOMBOL RESPONSIF          */
-
-
-/* ------------------------------ */
-
-.box-button {
-    cursor: pointer;
-    border: 4px solid black;
-    background-color: gray;
-    padding-bottom: 10px;
-    transition: 0.1s ease-in-out;
-    user-select: none;
-}
-
-.button {
-    background-color: #dddddd;
-    border: 4px solid #f8f8f9;
-    padding: 8px 14px;
-    color: rgb(12, 12, 12);
-    font-size: 1em;
-}
-
-.button span {
-    font-size: 1.2em;
-    letter-spacing: 1px;
-}
-
-.box-button:active {
-    padding: 0;
-    margin-bottom: 10px;
-    transform: translateY(10px);
-}
-
-
-/* Container horizontal */
-
-.button-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-
-/* Tombol responsif */
-
 @media (max-width: 480px) {
     .button {
         font-size: 0.8em;
@@ -256,42 +100,6 @@
     }
 }
 
-
-/* ------------------------------ */
-
-
-/*            CARD                */
-
-
-/* ------------------------------ */
-
-
-/* ------------------------------ */
-
-
-/*        Latar Belakang          */
-
-
-/* ------------------------------ */
-
-.kelompok {
-    background: url("gambar 1.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-}
-
-
-/* Responsif background */
-
 @media (max-width: 480px) {
     .kelompok {
         background-size: 150%;
@@ -307,48 +115,26 @@
 }
 
 
-/* ------------------------------ */
+/* From Uiverse.io by adamgiebl */
 
-
-/*           Tombol               */
-
-
-/* ------------------------------ */
-
-.button-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-.box-button {
+button {
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
     cursor: pointer;
-    border: 4px solid black;
-    background-color: gray;
-    padding-bottom: 10px;
-    transition: 0.1s ease-in-out;
-    user-select: none;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
 
-.button {
-    background-color: #dddddd;
-    border: 4px solid #f8f8f9;
-    padding: 8px 14px;
-    color: rgb(12, 12, 12);
-    font-size: 1em;
+button:hover {
+    border: 1px solid white;
 }
 
-.button span {
-    font-size: 1.2em;
-    letter-spacing: 1px;
-}
-
-.box-button:active {
-    padding: 0;
-    margin-bottom: 10px;
-    transform: translateY(10px);
+button:active {
+    box-shadow: 4px 4px 12px #c5c5c5, -4px -4px 12px #ffffff;
 }
 
 
@@ -391,7 +177,7 @@
     height: 100%;
     transform-style: preserve-3d;
     transition: transform 300ms;
-    box-shadow: 0px 0px 10px 1px #000000ee;
+    box-shadow: 10px 20px 10px 1px #000000ee;
     border-radius: 5px;
     position: relative;
 }
@@ -754,6 +540,4 @@ footer {
 
 .nav-menu {
     transition: 0.3s ease-in-out;
-
 }
-
