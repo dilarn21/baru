@@ -136,7 +136,7 @@ function selectMixOption(mixName) {
 // Fungsi untuk menambahkan mix yang dipilih ke keranjang
 function addSelectedMixToCart() {
     if (selectedMix) {
-        addToCart(`Varian Mix: ${selectedMix}`, 5000, 'campuran');
+        addToCart(`Varian Mix: ${selectedMix}`, 3000, 'campuran');
         closeMixModal();
     } else {
         alert('Silakan pilih varian mix terlebih dahulu');
@@ -200,3 +200,4 @@ window.onclick = function(event) {
         closeMixModal();
     }
 }
+
