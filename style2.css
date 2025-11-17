@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: url("download.webp");
+background-color: #090909;
     color: white;
     padding: 15px 60px;
     z-index: 1000;
@@ -514,3 +514,4 @@ button:active {
         font-size: 0.9em;
     }
 }
+
